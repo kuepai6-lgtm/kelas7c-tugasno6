@@ -1,0 +1,444 @@
+:root {
+  --ink: #14263b;
+  --ink-2: #1d3652;
+  --teal: #1f6f6b;
+  --teal-dark: #17544f;
+  --amber: #f4b73f;
+  --paper: #f4f6f5;
+  --card: #ffffff;
+  --line: #d5dcda;
+  --muted: #5a6b7a;
+  --red: #c0392b;
+  --radius: 10px;
+  --font-head: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+h1, h2, strong { font-family: var(--font-head); }
+h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 .25rem; line-height: 1.15; }
+h2 { font-size: 1.1rem; margin: 0 0 .75rem; }
+p { margin: 0 0 .5rem; }
+.muted { color: var(--muted); }
+
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+/* ---------- Topbar ---------- */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem 1.5rem;
+  padding: .75rem 1.5rem;
+  background: var(--ink);
+  color: #fff;
+}
+.brand { display: flex; align-items: center; gap: .75rem; }
+.brand strong { display: block; font-size: 1.1rem; }
+.brand small { color: #aebccb; }
+.brand-mark {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: var(--amber);
+  position: relative;
+}
+.brand-mark::after {
+  content: "";
+  position: absolute; inset: 9px;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+}
+nav { display: flex; flex-wrap: wrap; gap: .25rem; }
+nav a {
+  color: #dbe5ee;
+  text-decoration: none;
+  padding: .45rem .9rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+nav a:hover { background: var(--ink-2); }
+nav a.active { background: var(--amber); color: var(--ink); }
+
+main { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+body[data-view="layar"] main { max-width: none; padding: 0; }
+.view[hidden] { display: none; }
+.page-head { margin-bottom: 1.25rem; max-width: 62ch; }
+
+/* ---------- Tombol ---------- */
+.btn {
+  font: inherit;
+  font-weight: 600;
+  border: 2px solid var(--teal);
+  background: var(--teal);
+  color: #fff;
+  padding: .6rem 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
+.btn.big { padding: .85rem 1.5rem; font-size: 1.1rem; }
+.btn.small { padding: .35rem .8rem; font-size: .9rem; }
+.btn.ghost { background: transparent; color: var(--teal); }
+.btn.ghost:hover { background: #e4f0ef; }
+.btn.ghost-light { background: transparent; color: #fff; border-color: #6d8299; }
+.btn.ghost-light:hover { background: var(--ink-2); }
+.btn.danger { background: transparent; color: var(--red); border-color: var(--red); }
+.btn.danger:hover { background: #fbeae8; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0; }
+.btn-row.center { justify-content: center; }
+
+/* ---------- Kios ---------- */
+.svc-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.svc {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "code body" "code wait";
+  gap: .1rem 1rem;
+  text-align: left;
+  font: inherit;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+.svc:hover { border-color: var(--teal); }
+.svc-code {
+  grid-area: code;
+  align-self: center;
+  width: 3.4rem; height: 3.4rem;
+  display: grid; place-items: center;
+  background: var(--ink);
+  color: var(--amber);
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.8rem;
+  border-radius: 8px;
+}
+.svc-body { grid-area: body; }
+.svc-body strong { display: block; font-size: 1.1rem; }
+.svc-body small { color: var(--muted); font-size: .95rem; }
+.svc-wait { grid-area: wait; color: var(--teal); font-weight: 600; font-size: .95rem; }
+
+/* ---------- Panel umum ---------- */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.badge {
+  display: inline-block;
+  min-width: 1.8rem;
+  text-align: center;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 99px;
+  font-size: .9rem;
+  padding: 0 .5rem;
+  margin-left: .35rem;
+}
+
+/* ---------- Loket ---------- */
+.loket-layout { display: grid; gap: 1rem; grid-template-columns: 1.1fr 1fr; align-items: start; }
+.field-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+label { display: grid; gap: .25rem; font-weight: 600; font-size: .95rem; }
+select {
+  font: inherit;
+  padding: .5rem .6rem;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  min-width: 11rem;
+}
+.now-serving {
+  margin: 1.25rem 0 .25rem;
+  padding: 1rem 1.25rem;
+  background: var(--ink);
+  border-radius: var(--radius);
+  color: #fff;
+}
+.now-serving .muted { color: #aebccb; }
+.now-no {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 4.5rem;
+  line-height: 1.1;
+  color: var(--amber);
+  font-variant-numeric: tabular-nums;
+}
+.check { display: flex; align-items: center; gap: .5rem; font-weight: 400; color: var(--muted); }
+
+/* ---------- Tabel ---------- */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-family: var(--font-head); font-weight: 700; font-size: .9rem; color: var(--muted); }
+td.no { font-family: var(--font-head); font-weight: 700; }
+.empty { color: var(--muted); padding: 1rem .6rem; }
+.st { font-weight: 600; }
+.st-waiting { color: var(--muted); }
+.st-serving { color: var(--teal); }
+.st-done { color: #2b7a3d; }
+.st-skipped { color: var(--red); }
+
+/* ---------- Layar panggilan ---------- */
+.board {
+  position: relative;
+  min-height: calc(100vh - 66px);
+  background: var(--ink) url("latar-gelap.svg") center bottom / cover no-repeat;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.board-top {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #2b4560;
+}
+.board-top strong { font-size: 1.25rem; }
+.clock { margin-left: 1rem; color: #aebccb; font-variant-numeric: tabular-nums; }
+.board-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+}
+.board-call {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 2rem;
+  text-align: center;
+  border-right: 1px solid #2b4560;
+}
+.board-label { color: #aebccb; font-size: 1.25rem; }
+.big-no {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(5rem, 20vw, 16rem);
+  line-height: 1;
+  color: var(--amber);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
+}
+.big-loket { font-family: var(--font-head); font-weight: 700; font-size: clamp(1.5rem, 4vw, 3rem); }
+.big-no.pulse { animation: pulse .9s ease-out 3; }
+@keyframes pulse {
+  0%   { transform: scale(1);    color: #fff; }
+  40%  { transform: scale(1.06); color: var(--amber); }
+  100% { transform: scale(1);    color: var(--amber); }
+}
+.board-side { padding: 1.5rem 2rem; }
+.board-side h2 { color: #aebccb; }
+.loket-cards { display: grid; gap: .75rem; }
+.loket-card {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--ink-2);
+  border-radius: var(--radius);
+  padding: .9rem 1.2rem;
+}
+.loket-card span:first-child { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; }
+.loket-card .lc-no {
+  font-family: var(--font-head); font-weight: 800; font-size: 2rem;
+  color: var(--amber); font-variant-numeric: tabular-nums;
+}
+.loket-card .lc-idle { color: #7f93a8; }
+.board-wait {
+  display: flex; flex-wrap: wrap; gap: 1.5rem;
+  padding: 1rem 2rem;
+  background: rgba(15, 30, 47, .82);
+  color: #cfdae5;
+}
+.audio-gate {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .75rem;
+  background: rgba(20, 38, 59, .94);
+  text-align: center;
+}
+.audio-gate[hidden] { display: none; }
+
+/* ---------- Rekap ---------- */
+.stats { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 1rem; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.2rem; }
+.stat b { display: block; font-family: var(--font-head); font-size: 1.9rem; line-height: 1.2; }
+.stat span { color: var(--muted); font-size: .95rem; }
+
+/* ---------- Dialog tiket ---------- */
+dialog {
+  border: none;
+  border-radius: 14px;
+  padding: 0;
+  width: min(92vw, 380px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+}
+dialog::backdrop { background: rgba(20, 38, 59, .6); }
+.tiket { padding: 1.75rem; text-align: center; }
+.tiket-no {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: 5rem; line-height: 1.1; margin: .25rem 0;
+  color: var(--ink);
+}
+.tiket-svc { font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 1.5rem;
+  transform: translate(-50%, 20px);
+  background: var(--ink); color: #fff;
+  padding: .7rem 1.2rem; border-radius: 8px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .2s, transform .2s;
+  z-index: 50;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Cetak ---------- */
+.print-ticket { display: none; }
+@media print {
+  body > *:not(#printTicket) { display: none !important; }
+  .print-ticket {
+    display: block !important;
+    width: 70mm; margin: 0 auto; padding: 6mm 0;
+    text-align: center; font-family: var(--font-head);
+    color: #000;
+  }
+  .print-ticket .pt-no { font-size: 48pt; font-weight: 800; line-height: 1.1; }
+  .print-ticket p { margin: 2mm 0; }
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 800px) {
+  .loket-layout { grid-template-columns: 1fr; }
+  .board-main { grid-template-columns: 1fr; }
+  .board-call { border-right: none; border-bottom: 1px solid #2b4560; }
+  main { padding: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .big-no.pulse { animation: none; }
+  .toast { transition: none; }
+}
+
+/* ---------- Tambahan Samsat: langkah, syarat, riwayat panggilan ---------- */
+.steps {
+  list-style: none;
+  counter-reset: langkah;
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+.steps li {
+  counter-increment: langkah;
+  position: relative;
+  background: #e4f0ef;
+  border-radius: var(--radius);
+  padding: .8rem 1rem .8rem 3.2rem;
+}
+.steps li::before {
+  content: counter(langkah);
+  position: absolute; left: .8rem; top: 50%;
+  transform: translateY(-50%);
+  width: 1.9rem; height: 1.9rem;
+  display: grid; place-items: center;
+  background: var(--teal); color: #fff;
+  border-radius: 50%;
+  font-family: var(--font-head); font-weight: 800;
+}
+.steps b { display: block; font-family: var(--font-head); }
+.steps span { color: var(--muted); font-size: .92rem; }
+h2.pick { font-size: 1.35rem; margin-bottom: 1rem; }
+
+.svc-need { display: block; margin-top: .3rem; color: var(--ink); font-size: .9rem; }
+.svc-body strong { font-size: 1.2rem; }
+.svc { min-height: 7.5rem; }
+.svc:active { transform: scale(.99); }
+
+.tiket-syarat {
+  text-align: left;
+  background: var(--paper);
+  border-radius: 8px;
+  padding: .75rem 1rem;
+  margin: .75rem 0;
+  font-size: .95rem;
+}
+.tiket-syarat ul { margin: .35rem 0 0; padding-left: 1.2rem; }
+
+.board-sub { display: block; color: #aebccb; font-size: .95rem; }
+.recent-title { margin-top: 1.5rem; }
+.recent { display: grid; gap: .4rem; }
+.recent-row {
+  display: flex; justify-content: space-between;
+  padding: .45rem 1rem;
+  border-bottom: 1px solid #2b4560;
+  color: #cfdae5;
+}
+.recent-row span:first-child { font-family: var(--font-head); font-weight: 700; font-variant-numeric: tabular-nums; }
+.board-wait .est { margin-left: auto; color: var(--amber); font-weight: 600; }
+
+/* ---------- Latar bergambar: Tampomas, Lingga, gedung Samsat, jalan ---------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("latar-terang.svg") center bottom / cover no-repeat;
+}
+body[data-view="layar"]::before { display: none; }
+@media print { body::before { display: none; } }
+
+/* ---------- Logo ---------- */
+.brand-logo { width: 46px; height: 46px; flex: none; }
+.board-id { display: flex; align-items: center; gap: .9rem; }
+.board-logo { width: 56px; height: 56px; flex: none; }
+.board-id .clock { margin-left: 0; display: block; }
+.tiket-logo { width: 52px; height: 52px; margin-bottom: .25rem; }
+
+/* ---------- Lambang Sumedang + ikon layanan bergambar ---------- */
+.brand-logo, .board-logo, .tiket-logo { object-fit: contain; width: auto; }
+.brand-logo { height: 46px; }
+.board-logo { height: 56px; }
+.tiket-logo { height: 56px; }
+
+.svc {
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "ico body" "ico wait";
+  align-items: center;
+  border-left: 8px solid var(--c, var(--line));
+  padding: .9rem 1.1rem;
+  min-height: 9rem;
+}
+.svc:hover { border-color: var(--c); }
+.svc-ico { grid-area: ico; position: relative; display: block; width: 104px; height: 104px; }
+.svc-ico img { display: block; width: 104px; height: 104px; }
+.svc-letter {
+  position: absolute; right: -6px; bottom: -4px;
+  min-width: 2rem; height: 2rem; padding: 0 .35rem;
+  display: grid; place-items: center;
+  background: var(--ink); color: #fff;
+  border: 3px solid #fff; border-radius: 99px;
+  font-family: var(--font-head); font-weight: 800; font-size: 1rem;
+}
+.svc-code { display: none; }
+
+#tSvc { display: flex; align-items: center; justify-content: center; gap: .75rem; text-align: left; }
+#tSvc img { width: 64px; height: 64px; flex: none; }
+
+/* Empat layanan tersusun 2 x 2 di layar lebar */
+.svc-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); }
